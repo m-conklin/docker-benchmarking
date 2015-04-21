@@ -1,0 +1,42 @@
+#!/usr/bin/python
+
+import subprocess
+
+def initialize_file(f):
+    f.write('Rate (MB/s),Avg time,Min time,Max time \n')
+
+def run_stream(times):
+    for i in range(times):
+        subprocess.call('./stream_c.exe', stdout=writeout) 
+
+copy = open('copy_results.csv', 'a')
+scale = open('scale_results.csv', 'a')
+add = open('add_results.csv', 'a')
+triad = open('triad_results.csv', 'a')
+
+files = [copy, scale,  add, triad]
+
+for f in files:
+    initialize_file(f)
+
+writeout = open('out.txt', 'w')
+output = open('out.txt', 'r')
+run_stream(5)
+run_stream(5)
+for line in output:
+    line = line.split()
+    f = line[0].lower()
+    if f == 'copy:':
+        copy.write(",".join(line[1:]) + '\n')
+    elif f == 'scale:':
+        scale.write(",".join(line[1:]) + '\n')
+    elif f == 'add:':
+            add.write(",".join(line[1:]) + '\n')
+    elif f == 'triad:':
+            triad.write(",".join(line[1:]) + '\n')
+
+
+
+output.close()
+for f in files:
+    f.close()

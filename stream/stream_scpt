@@ -22,7 +22,6 @@ for f in files:
 writeout = open('out.txt', 'w')
 output = open('out.txt', 'r')
 run_stream(5)
-run_stream(5)
 for line in output:
     line = line.split()
     f = line[0].lower()

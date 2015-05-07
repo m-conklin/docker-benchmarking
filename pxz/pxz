@@ -1,3 +1,6 @@
 #!/bin/bash
 
-/usr/bin/time -f %e -o out.txt -a pxz -T 32 -D 2 test.txt
+for run in {1..5}
+do
+	/usr/bin/time -f %e -o out.txt -a pxz -T 32 -D 2 test.txt
+done
